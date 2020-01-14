@@ -2,7 +2,10 @@ import express from 'express';
 
 const app = express();
 
-app.get('/', (req, res) => {
+// Routes params são usados quando queremos usar: DELETE ou PUT 
+
+app.delete('/users/:id', (req, res) => {
+  console.log(req.params.id);
   return res.json({ dev: true });
 });
 
