@@ -42,6 +42,14 @@ class DevController {
   
     return response.json(dev);
   }
+
+  async update() {
+
+  }
+
+  async destroy() {
+    
+  }
 }
 
 export default new DevController();
