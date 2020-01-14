@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 const DevSchema = new Schema({
-  name: Number,
+  name: String,
   github_username: String,
   bio: String,
   avatar_url: String,
