@@ -11,6 +11,7 @@ const app = express();
 connect('mongodb://localhost/week10', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
 app.use(express.json());
