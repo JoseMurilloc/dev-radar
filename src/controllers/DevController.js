@@ -43,12 +43,13 @@ class DevController {
     return response.json(dev);
   }
 
+  // Exercicio Omnisctack
   async update() {
 
   }
 
   async destroy() {
-    
+
   }
 }
 

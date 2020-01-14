@@ -3,19 +3,31 @@ import { connect } from 'mongoose';
 
 import routes from './routes';
 
-const app = express();
 
-// Routes params são usados quando queremos usar: DELETE ou PUT 
-// Body é usado no POST ou PUT para o envio dos dados do corpo da aplicação
+class App {
+  constructor() {
+    this.app = express();
 
-connect('mongodb://localhost/week10', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+    this.database();
+    this.middleware();
+    this.routes();
+  }
 
-app.use(express.json());
+  database() {
+    connect('mongodb://localhost/week10', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
+  }
 
-app.use(routes);
+  middleware() {
+    this.app.use(express.json());
+  }
 
-app.listen(3333);
+  routes() {
+    this.app.use(routes);
+  }
+}
+
+new App().app.listen(3333);
