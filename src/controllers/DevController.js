@@ -2,6 +2,8 @@ import axios from 'axios';
 import Dev from '../models/Dev';
 
 
+import parserStringAsArray from '../utils/ParserStringAsArray';
+
 class DevController {
 
   async index(request, response) {
@@ -17,8 +19,8 @@ class DevController {
     if(existDev) {
       return response.json(existDev);
     }
-
-    const techsArray = techs.split(', ').map(tech => tech.trim());
+    
+    const techsArray = parserStringAsArray(techs);
   
     const { data } = await axios.get(`https://api.github.com/users/${github_username}`);
     
