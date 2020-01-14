@@ -6,7 +6,7 @@ import routes from './routes';
 
 class App {
   constructor() {
-    this.app = express();
+    this.server = express();
 
     this.database();
     this.middleware();
@@ -22,12 +22,12 @@ class App {
   }
 
   middleware() {
-    this.app.use(express.json());
+    this.server.use(express.json());
   }
 
   routes() {
-    this.app.use(routes);
+    this.server.use(routes);
   }
 }
 
-new App().app.listen(3333);
+export default new App().server;
