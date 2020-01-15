@@ -3,7 +3,7 @@ import { connect } from 'mongoose';
 
 import routes from './routes';
 
-
+import cors from 'cors';
 class App {
   constructor() {
     this.server = express();
@@ -23,6 +23,7 @@ class App {
 
   middleware() {
     this.server.use(express.json());
+    this.server.use(cors({ origin: 'http://localhost:3000' }));
   }
 
   routes() {

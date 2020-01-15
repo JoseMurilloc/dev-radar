@@ -4,7 +4,7 @@ import Dev from '../models/Dev';
 
 import parserStringAsArray from '../utils/ParserStringAsArray';
 
-class DevController {
+class DevConptroller {
 
   async index(request, response) {
     const devs = await Dev.find();
