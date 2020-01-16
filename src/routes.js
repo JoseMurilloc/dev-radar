@@ -7,6 +7,7 @@ const routes = Router();
 
 routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.create);
+routes.delete('/devs', DevController.destroy);
 
 routes.get('/seach', SeachController.index);
 

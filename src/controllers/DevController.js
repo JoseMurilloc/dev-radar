@@ -44,12 +44,19 @@ class DevController {
   }
 
   // Exercicio Omnisctack
-  async update() {
-
+  async destroy(request, response) {
+    const { github_username } = request.body;
+  
+    const dev = await Dev.findOne({ github_username });
+    if(!dev) {
+      return response.status(502).json({ error: 'User not found' });
+    }
+    await Dev.deleteOne({ _id: dev._id });
+    return response.json(dev);
   }
 
-  async destroy() {
-
+  async update(resquest, response) {
+    return response.json({ OK: true });
   }
 }
 
