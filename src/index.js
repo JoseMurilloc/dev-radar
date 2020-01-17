@@ -1,12 +1,15 @@
 import express from 'express';
 import { connect } from 'mongoose';
+import http from 'http';
 
 import routes from './routes';
 
 import cors from 'cors';
 class App {
   constructor() {
-    this.server = express();
+    this.app = express();
+
+    this.server = http.Server(this.app);
 
     this.database();
     this.middleware();
@@ -23,12 +26,12 @@ class App {
   }
 
   middleware() {
-    this.server.use(express.json());
-    this.server.use(cors());
+    this.app.use(express.json());
+    this.app.use(cors());
   }
 
   routes() {
-    this.server.use(routes);
+    this.app.use(routes);
   }
 }
 

@@ -16,31 +16,31 @@ class DevController {
     
     const existDev = await Dev.findOne({ github_username });
 
-    if(existDev) {
-      return response.json(existDev);
+    if(!existDev) {
+      
+      const techsArray = parserStringAsArray(techs);
+    
+      const { data } = await axios.get(`https://api.github.com/users/${github_username}`);
+      
+      const { name = login, avatar_url, bio } = data;
+    
+      const location = {
+        type: 'Point',
+        coordinates: [longitude, latitude],
+      }
+    
+      const dev = await Dev.create({
+        github_username,
+        name,
+        avatar_url,
+        bio,
+        techs: techsArray,
+        location,
+      });
+    
+      return response.json(dev);
     }
     
-    const techsArray = parserStringAsArray(techs);
-  
-    const { data } = await axios.get(`https://api.github.com/users/${github_username}`);
-    
-    const { name = login, avatar_url, bio } = data;
-  
-    const location = {
-      type: 'Point',
-      coordinates: [longitude, latitude],
-    }
-  
-    const dev = await Dev.create({
-      github_username,
-      name,
-      avatar_url,
-      bio,
-      techs: techsArray,
-      location,
-    });
-  
-    return response.json(dev);
   }
 
   // Exercicio Omnisctack
