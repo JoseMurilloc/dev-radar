@@ -58,7 +58,8 @@ class DevController {
 
   async update(request, response) {
 
-    const { github_username, techs, latitude, longitude } = request.body;
+    const { github_username } = request.params;
+    const { techs, latitude, longitude } = request.body;
   
 
     const techsArray = parserStringAsArray(techs);
@@ -68,16 +69,23 @@ class DevController {
       coordinates: [longitude, latitude],
     }
 
-    const dev = await Dev.findOneAndUpdate({ github_username }, { 
+    let dev = await Dev.findOneAndUpdate({ github_username }, { 
       techs: techsArray,
       location,
     });
 
+  
     if(!dev) {
       return response.status(502).json({ error: 'User not found' });
     }
 
-    return response.json(dev.github_username);
+    console.log(dev.github_username);
+    
+
+    dev = await Dev.findOne({ github_username: dev.github_username });
+    console.log(dev);
+    
+    return response.json(dev.techs);
   }
 }
 
