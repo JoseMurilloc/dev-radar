@@ -2,6 +2,8 @@ import express from 'express';
 import { connect } from 'mongoose';
 import http from 'http';
 
+import { setupWebSocket } from './websocket';
+
 import routes from './routes';
 
 import cors from 'cors';
@@ -10,6 +12,8 @@ class App {
     this.app = express();
 
     this.server = http.Server(this.app);
+
+    setupWebSocket(this.server);
 
     this.database();
     this.middleware();

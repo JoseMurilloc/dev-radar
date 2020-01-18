@@ -45,7 +45,8 @@ class DevController {
 
   // Exercicio Omnisctack
   async destroy(request, response) {
-    const { github_username } = request.body;
+    const { github_username } = request.params;
+    console.log(request.params.github_username);
   
     const dev = await Dev.findOne({ github_username });
     if(!dev) {
