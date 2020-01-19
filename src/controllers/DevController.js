@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Dev from '../models/Dev';
-
+import { findConection, sendMessage } from '../websocket'
 
 import parserStringAsArray from '../utils/ParserStringAsArray';
 
@@ -37,7 +37,14 @@ class DevController {
         techs: techsArray,
         location,
       });
-    
+
+      // Filtrar as conexões qeue estão as 10 km de distância e que o novo dev tenha pelo menos uma das tecnologias filtradas
+
+      const sendMessageTo = findConection({ latitude, longitude }, techsArray)
+      console.log(sendMessageTo); // Já sabemos para quem precisamos enviar a mensagem só não enviamos de fato.
+
+      sendMessage(sendMessageTo, 'new-dev', dev);
+      
       return response.json(dev);
     }
     
