@@ -1,6 +1,14 @@
 # Dev radar Server
 
-<img src="https://www.itl.cat/pngfile/big/94-943764_tablet-javascript-mobile.jpg" style="width: 400px;" />
+
+<style>
+  .size-img {
+    width: 300px;
+  }
+</style>
+
+
+<img src="https://www.itl.cat/pngfile/big/94-943764_tablet-javascript-mobile.jpg" class="size-img" />
 
 Tecnologias usadas no projeto:
 
