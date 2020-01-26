@@ -1,6 +1,7 @@
 import express from 'express';
 import { connect } from 'mongoose';
 import http from 'http';
+import 'dotenv/config';
 
 import { setupWebSocket } from './websocket';
 
@@ -21,7 +22,7 @@ class App {
   }
 
   database() {
-    connect('mongodb://localhost/week10', {
+    connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@mongodatabase-efqrb.mongodb.net/test?retryWrites=true&w=majority`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
